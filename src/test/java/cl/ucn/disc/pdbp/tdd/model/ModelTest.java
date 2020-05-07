@@ -1,7 +1,8 @@
 package cl.ucn.disc.pdbp.tdd.model;
 
+import cl.ucn.disc.pdbp.utils.Validation;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+//import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +37,7 @@ public final class ModelTest {
         String nombreApellido = nombre + " " + apellido;
         String rutOk = "152532873";
         String rutError = "15253287K";
-/**
+
         // Test constructor and getters
         Persona persona = new Persona(nombre, apellido, rutOk);
         Assertions.assertEquals(persona.getNombre(), nombre);
@@ -66,9 +67,7 @@ public final class ModelTest {
     /**
      * Test the digito verificador.
      */
-/**
     @Test
-    @Disabled // remove to run
     public void testDigitoVerificador() {
 
         Assertions.assertFalse(Validation.isRutValid(null));
@@ -84,7 +83,7 @@ public final class ModelTest {
         Assertions.assertFalse(Validation.isRutValid("15253287-"));
 
     }
-    */
+
 
 }
-}
+
