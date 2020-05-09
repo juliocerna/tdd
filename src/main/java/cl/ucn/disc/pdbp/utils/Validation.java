@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
  */
 public class Validation {
 
-
     /**
      * @param rut to validate
      * @return true if the rut is valid
