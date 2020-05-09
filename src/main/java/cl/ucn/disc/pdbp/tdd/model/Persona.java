@@ -17,20 +17,20 @@ public class Persona {
     /**
      * The nombre
      */
-    private String nombre;
+    private final String nombre;
 
     /**
      * The apellido
      */
-    private String apellido;
+    private final String apellido;
 
     /**
      * The rut
      */
-    private String rut;
+    private final String rut;
 
     /**
-     * Persona contructor
+     * Persona constructor
      * - The nombre can be not null
      * - The nombre must be more than 1 character
      * - The apellido can be not null
@@ -70,44 +70,38 @@ public class Persona {
     }
 
     /**
-     * Empty contructor
-     */
-    Persona() {
-
-    }
-
-    /**
      * @return the id
      */
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     /**
      * @return the nombre
      */
     public String getNombre() {
-        return nombre;
+        return this.nombre;
     }
 
     /**
      * @return the apellido
      */
     public String getApellido() {
-        return apellido;
+        return this.apellido;
     }
 
     /**
      * @return the rut
      */
     public String getRut() {
-        return rut;
+        return this.rut;
     }
 
     /**
      * @return the nombre plus apellido.
      */
     public String getNombreApellido() {
-        return nombre + " " + apellido;
+        return this.nombre + " " + this.apellido;
     }
+
 }
