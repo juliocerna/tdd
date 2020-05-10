@@ -1,32 +1,8 @@
-/*
- * Licencia MIT
- *
- * Copyright (c) 2020 Julio Cerna Medina <julio.cerna@alumnos.ucn.cl>
- *
- * Por la presente se otorga permiso, sin cargo, a cualquier persona que obtenga una copia
- * de este software y los archivos de documentación asociados (el "Software"), para tratar
- * en el Software sin restricción, incluidos, entre otros, los derechos
- * para usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y / o vender
- * copias del Software y para permitir a las personas a quienes pertenece el Software
- * amueblado para hacerlo, sujeto a las siguientes condiciones:
- *
- * El aviso de copyright anterior y este aviso de permiso se incluirán en todos
- * copias o partes sustanciales del software.
- *
- * EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
- * IMPLÍCITO, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD,
- * APTITUD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO EL
- * LOS AUTORES O LOS TITULARES DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES POR CUALQUIER RECLAMACIÓN, DAÑO U OTRO
- * RESPONSABILIDAD, EN CASO DE ACCIÓN DE CONTRATO, TORTURA O DE OTRA MANERA, DERIVADA DE,
- * FUERA DE O EN CONEXIÓN CON EL SOFTWARE O EL USO U OTRAS OFERTAS EN EL
- * SOFTWARE.
- ******************************************************************************/
-
 package cl.ucn.disc.pdbp.tdd.model;
 
 import cl.ucn.disc.pdbp.utils.Validation;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
+//import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,13 +23,12 @@ public final class ModelTest {
      * - El nombre debe tener al menos 2 letras.
      * - El apellido no puede ser null.
      * - El apellido debe tener al menos 3 letras.
-     * - El rut no puede ser null.
      * - El rut debe ser valido.
      */
     @Test
     public void testPersona() {
 
-       log.debug("Testing Persona ..");
+        log.debug("Testing Persona ..");
 
         // The data!
         log.debug(".. valid ..");
@@ -62,30 +37,26 @@ public final class ModelTest {
         String nombreApellido = nombre + " " + apellido;
         String rutOk = "152532873";
         String rutError = "15253287K";
-        String direccion = "";
-        Integer telefonoFijo = 0;
-        long telefonoMovil = 0;
-        String email = "";
 
         // Test constructor and getters
-        Persona persona = new Persona(nombre, apellido, rutOk, direccion, telefonoFijo, telefonoMovil, email);
+        Persona persona = new Persona(nombre, apellido, rutOk);
         Assertions.assertEquals(persona.getNombre(), nombre);
         Assertions.assertEquals(persona.getApellido(), apellido);
         Assertions.assertEquals(persona.getNombreApellido(), nombreApellido);
 
         // Testing nullity
         log.debug(".. nullity ..");
-        Assertions.assertThrows(NullPointerException.class, () -> new Persona(null, null, null,  direccion, telefonoFijo, telefonoMovil, email));
-        Assertions.assertThrows(NullPointerException.class, () -> new Persona(null, null, rutOk, direccion, telefonoFijo, telefonoMovil, email));
-        Assertions.assertThrows(NullPointerException.class, () -> new Persona(null, apellido, null, direccion, telefonoFijo, telefonoMovil, email));
-        Assertions.assertThrows(NullPointerException.class, () -> new Persona(null, apellido, rutOk, direccion, telefonoFijo, telefonoMovil, email));
-        Assertions.assertThrows(NullPointerException.class, () -> new Persona(nombre, null, null, direccion, telefonoFijo, telefonoMovil, email));
-        Assertions.assertThrows(NullPointerException.class, () -> new Persona(nombre, null, rutOk, direccion, telefonoFijo, telefonoMovil, email));
-        Assertions.assertThrows(NullPointerException.class, () -> new Persona(nombre, apellido, null, direccion, telefonoFijo, telefonoMovil, email));
+        Assertions.assertThrows(NullPointerException.class, () -> new Persona(null, null, null));
+        Assertions.assertThrows(NullPointerException.class, () -> new Persona(null, null, rutOk));
+        Assertions.assertThrows(NullPointerException.class, () -> new Persona(null, apellido, null));
+        Assertions.assertThrows(NullPointerException.class, () -> new Persona(null, apellido, rutOk));
+        Assertions.assertThrows(NullPointerException.class, () -> new Persona(nombre, null, null));
+        Assertions.assertThrows(NullPointerException.class, () -> new Persona(nombre, null, rutOk));
+        Assertions.assertThrows(NullPointerException.class, () -> new Persona(nombre, apellido, null));
 
         // Testing invalid rut
         log.debug(".. rut ..");
-        Assertions.assertThrows(RuntimeException.class, () -> new Persona(nombre, apellido, rutError, direccion, telefonoFijo, telefonoMovil, email));
+        Assertions.assertThrows(RuntimeException.class, () -> new Persona(nombre, apellido, rutError));
 
         // TODO: Add the size of nombre y apellido.
 
@@ -94,21 +65,9 @@ public final class ModelTest {
     }
 
     /**
-     * Test email
-     */
-    @Test
-    public void email() {
-        // TODO: Agregar mas casos de prueba
-        Assertions.assertTrue(Validation.isEmailValid("julio.cerna@gmail.cl"));
-        Assertions.assertFalse(Validation.isEmailValid("julio.c  erna@gmail.cl"));
-        Assertions.assertTrue(Validation.isEmailValid("@gmail.cl"));
-    }
-
-    /**
      * Test the digito verificador.
      */
     @Test
-    @Disabled
     public void testDigitoVerificador() {
 
         Assertions.assertFalse(Validation.isRutValid(null));
