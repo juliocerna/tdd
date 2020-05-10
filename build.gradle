@@ -1,5 +1,29 @@
 apply plugin: 'java'
 
+/*
+ * Licencia MIT
+ *
+ * Copyright (c) 2020 Julio Cerna Medina <julio.cerna@alumnos.ucn.cl>
+ *
+ * Por la presente se otorga permiso, sin cargo, a cualquier persona que obtenga una copia
+ * de este software y los archivos de documentación asociados (el "Software"), para tratar
+ * en el Software sin restricción, incluidos, entre otros, los derechos
+ * para usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y / o vender
+ * copias del Software y para permitir a las personas a quienes pertenece el Software
+ * amueblado para hacerlo, sujeto a las siguientes condiciones:
+ *
+ * El aviso de copyright anterior y este aviso de permiso se incluirán en todos
+ * copias o partes sustanciales del software.
+ *
+ * EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
+ * IMPLÍCITO, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD,
+ * APTITUD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO EL
+ * LOS AUTORES O LOS TITULARES DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES POR CUALQUIER RECLAMACIÓN, DAÑO U OTRO
+ * RESPONSABILIDAD, EN CASO DE ACCIÓN DE CONTRATO, TORTURA O DE OTRA MANERA, DERIVADA DE,
+ * FUERA DE O EN CONEXIÓN CON EL SOFTWARE O EL USO U OTRAS OFERTAS EN EL
+ * SOFTWARE.
+ ******************************************************************************/
+
 // Plugin to check for the latest libraries version.
 apply plugin: "com.github.ben-manes.versions"
 
@@ -30,12 +54,12 @@ java {
 
 // Testing configuration
 test {
-    
+
     // Enable JUnit Platform (a.k.a. JUnit 5) support
     useJUnitPlatform()
-    
+
     // failFast = true
-    
+
     // Run the test in parallel
     systemProperty 'junit.jupiter.execution.parallel.enabled', 'true'
     systemProperty 'junit.jupiter.execution.parallel.mode.default', 'concurrent'
@@ -58,5 +82,12 @@ dependencies {
     // SLF4J
     implementation 'org.slf4j:slf4j-api:1.7.30'
     implementation 'ch.qos.logback:logback-classic:1.3.0-alpha5'
+
+    // ORM Lite
+    implementation 'com.j256.ormlite:ormlite-core:5.1'
+    implementation 'com.j256.ormlite:ormlite-jdbc:5.1'
+
+    // Database driver
+    implementation 'com.h2database:h2:1.4.200'
 
 }
