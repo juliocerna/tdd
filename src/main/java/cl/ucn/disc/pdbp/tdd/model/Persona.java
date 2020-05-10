@@ -30,6 +30,26 @@ public class Persona {
     private final String rut;
 
     /**
+     * The direccion
+     */
+    private final String direccion;
+
+    /**
+     * The telefono fijo
+     */
+    private final Integer telefonoFijo;
+
+    /**
+     * The telefono movil
+     */
+    private final Long telefonoMovil;
+
+    /**
+     * The email
+     */
+    private final String email;
+
+    /**
      * Persona constructor
      * - The nombre can be not null
      * - The nombre must be more than 1 character
@@ -38,11 +58,15 @@ public class Persona {
      * - The rut can be not null
      * - The rut must be valid
      *
-     * @param nombre to use
+     *  @param nombre to use
      * @param apellido to use
      * @param rut valid
+     * @param direccion to use
+     * @param telefonoFijo to use
+     * @param telefonoMovil to use
+     * @param email to use
      */
-    public Persona(String nombre, String apellido, String rut) {
+    public Persona(String nombre, String apellido, String rut, String direccion, Integer telefonoFijo, Long telefonoMovil, String email) {
 
         // Check null fields
         if (nombre == null || apellido == null || rut == null) {
@@ -66,6 +90,27 @@ public class Persona {
             throw new RuntimeException("The RUT should be valid");
         }
         this.rut = rut;
+
+        this.direccion = direccion;
+
+        // Numero fijo should be valid
+        // TODO: Verificar el largo del numero fijo
+        if (telefonoFijo != null && telefonoFijo < 100000) {
+            throw new RuntimeException("TelefonoFijo should be valid");
+        }
+        this.telefonoFijo = telefonoFijo;
+
+        // Numero movil should be valid
+        if (telefonoMovil != null && telefonoMovil < 10000000) {
+            throw new RuntimeException("TelefonoMovil should be valid");
+        }
+        this.telefonoMovil = telefonoMovil;
+
+        // Validation of the email
+        if (!Validation.isEmailValid(email)) {
+            throw new RuntimeException("Email should be valid");
+        }
+        this.email = email;
 
     }
 
@@ -95,6 +140,34 @@ public class Persona {
      */
     public String getRut() {
         return this.rut;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @return the telefono fijo
+     */
+    public Integer getTelefonoFijo() {
+        return telefonoFijo;
+    }
+
+    /**
+     * @return the telefono movil
+     */
+    public Long getTelefonoMovil() {
+        return telefonoMovil;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
     }
 
     /**

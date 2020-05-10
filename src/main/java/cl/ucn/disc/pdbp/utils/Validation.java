@@ -10,6 +10,20 @@ import java.util.regex.Pattern;
 public class Validation {
 
     /**
+     * @param email to validate
+     * @return true if email is valid
+     */
+    public static boolean isEmailValid(String email) {
+        // https://howtodoinjava.com/regex/java-regex-validate-email-address/
+
+        // TODO: Revisar https://tools.ietf.org/html/rfc5322
+        String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+
+        return email.matches(regex);
+
+    }
+
+    /**
      * @param rut to validate
      * @return true if the rut is valid
      */
