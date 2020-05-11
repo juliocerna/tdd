@@ -1,77 +1,91 @@
 /*
- * Licencia MIT
+ * MIT License
  *
  * Copyright (c) 2020 Julio Cerna Medina <julio.cerna@alumnos.ucn.cl>
  *
- * Por la presente se otorga permiso, sin cargo, a cualquier persona que obtenga una copia
- * de este software y los archivos de documentación asociados (el "Software"), para tratar
- * en el Software sin restricción, incluidos, entre otros, los derechos
- * para usar, copiar, modificar, fusionar, publicar, distribuir, sublicenciar y / o vender
- * copias del Software y para permitir a las personas a quienes pertenece el Software
- * amueblado para hacerlo, sujeto a las siguientes condiciones:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * El aviso de copyright anterior y este aviso de permiso se incluirán en todos
- * copias o partes sustanciales del software.
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
  *
- * EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
- * IMPLÍCITO, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD,
- * APTITUD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO EL
- * LOS AUTORES O LOS TITULARES DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES POR CUALQUIER RECLAMACIÓN, DAÑO U OTRO
- * RESPONSABILIDAD, EN CASO DE ACCIÓN DE CONTRATO, TORTURA O DE OTRA MANERA, DERIVADA DE,
- * FUERA DE O EN CONEXIÓN CON EL SOFTWARE O EL USO U OTRAS OFERTAS EN EL
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  ******************************************************************************/
 
 package cl.ucn.disc.pdbp.tdd.model;
 
 import cl.ucn.disc.pdbp.utils.Validation;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
  * The Persona class
  *
  * @author Julio Cerna Medina
  */
+@DatabaseTable(tableName = "persona")
 public class Persona {
 
     /**
      * The id
      */
+    @DatabaseField(generatedId = true)
     private Long id;
 
     /**
      * The nombre
      */
-    private final String nombre;
+    @DatabaseField(canBeNull = false)
+    private String nombre;
 
     /**
      * The apellido
      */
-    private final String apellido;
+    @DatabaseField(canBeNull = false)
+    private String apellido;
 
     /**
      * The rut
      */
-    private final String rut;
+    @DatabaseField(canBeNull = false, index = true)
+    private String rut;
 
-    /**
+     /**
      * The direccion
      */
-    private final String direccion;
+    //private String direccion;
 
     /**
      * The telefono fijo
      */
-    private final Integer telefonoFijo;
+    //private Integer telefonoFijo;
 
     /**
      * The telefono movil
      */
-    private final Long telefonoMovil;
+    //private Long telefonoMovil;
 
     /**
      * The email
      */
-    private final String email;
+    //private String email;
+
+    /**
+     * Empty constructor
+     */
+    Persona() {
+        // Nothing here
+    }
 
     /**
      * Persona constructor
@@ -82,15 +96,11 @@ public class Persona {
      * - The rut can be not null
      * - The rut must be valid
      *
-     *  @param nombre to use
+     * @param nombre to use
      * @param apellido to use
      * @param rut valid
-     * @param direccion to use
-     * @param telefonoFijo to use
-     * @param telefonoMovil to use
-     * @param email to use
      */
-    public Persona(String nombre, String apellido, String rut, String direccion, Integer telefonoFijo, Long telefonoMovil, String email) {
+    public Persona(String nombre, String apellido, String rut) {
 
         // Check null fields
         if (nombre == null || apellido == null || rut == null) {
@@ -115,7 +125,7 @@ public class Persona {
         }
         this.rut = rut;
 
-        this.direccion = direccion;
+        /**this.direccion = direccion;
 
         // Numero fijo should be valid
         // TODO: Verificar el largo del numero fijo
@@ -134,7 +144,7 @@ public class Persona {
         if (!Validation.isEmailValid(email)) {
             throw new RuntimeException("Email should be valid");
         }
-        this.email = email;
+        this.email = email;*/
 
     }
 
@@ -169,30 +179,30 @@ public class Persona {
     /**
      * @return the direccion
      */
-    public String getDireccion() {
+    /**public String getDireccion() {
         return direccion;
-    }
+    }*/
 
     /**
      * @return the telefono fijo
      */
-    public Integer getTelefonoFijo() {
+    /**public Integer getTelefonoFijo() {
         return telefonoFijo;
-    }
+    }*/
 
     /**
      * @return the telefono movil
      */
-    public Long getTelefonoMovil() {
+    /**public Long getTelefonoMovil() {
         return telefonoMovil;
-    }
+    }*/
 
     /**
      * @return the email
      */
-    public String getEmail() {
+    /**public String getEmail() {
         return email;
-    }
+    }*/
 
     /**
      * @return the nombre plus apellido.
