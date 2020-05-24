@@ -24,55 +24,86 @@
 
 package cl.ucn.disc.pdbp.tdd.model;
 
+import cl.ucn.disc.pdbp.tdd.dao.ZonedDateTimeType;
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.time.ZonedDateTime;
 
+/**
+ * Control
+ *
+ * @author Julio Cerna Medina
+ */
+@DatabaseTable(tableName = "control")
 public class Control {
+
+    /**
+     * The id
+     */
+    @DatabaseField(generatedId = true)
+    private Long id;
 
     /**
      * The Fecha of the control
      */
-    private final ZonedDateTime fecha;
+    @DatabaseField(persisterClass  =  ZonedDateTimeType.class)
+    private ZonedDateTime fecha;
 
     /**
      * The fecha of the next control
      */
-    private final ZonedDateTime fechaProximoControl;
+    @DatabaseField(persisterClass  =  ZonedDateTimeType.class)
+    private ZonedDateTime fechaProximoControl;
 
     /**
      * The temperatura (°C)
      *
-     * Min: ... // TODO: Establecer parámetros de la temperatura
+     * Min: ... // TODO: Establecer parametros de la temperatura
      * Max: ...
      */
-    private final float temperatura;
+    @DatabaseField(canBeNull = false, dataType = DataType.FLOAT)
+    private float temperatura;
 
     /**
      * The peso (kg)
      *
-     * Min: ... // TODO: Establecer parámetros del peso
+     * Min: ... // TODO: Establecer parametros del peso
      * Max: ...
      */
-    private final float peso;
+    @DatabaseField(canBeNull = false, dataType = DataType.FLOAT)
+    private float peso;
 
     /**
      * The altura (cm)
      *
      * Min: 1
-     * Max: ... // TODO: verificar la altura máxima
+     * Max: ... // TODO: verificar la altura maxima
      */
-    private final float altura;
+    @DatabaseField(canBeNull = false, dataType = DataType.FLOAT)
+    private float altura;
 
     /**
-     * The diagnóstico
+     * The diagnostico
      */
-    private final String diagnostico;
+    @DatabaseField(canBeNull = false)
+    private String diagnostico;
 
     /**
      * The veterinario
      *
      * Nota: Vet can perform many checks
      */
-    private final Persona veterinario;
+    @DatabaseField(canBeNull = false)
+    private Persona veterinario;
+
+    /**
+     * Empty constructor
+     */
+    Control() {
+        // Nothing here
+    }
 
     /**
      * Constructor
