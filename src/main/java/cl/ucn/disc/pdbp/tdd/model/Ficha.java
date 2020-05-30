@@ -24,6 +24,10 @@
 
 package cl.ucn.disc.pdbp.tdd.model;
 
+import cl.ucn.disc.pdbp.tdd.dao.ZonedDateTimeType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.time.ZonedDateTime;
 
 /**
@@ -31,61 +35,90 @@ import java.time.ZonedDateTime;
  *
  * @author Julio Cerna Medina
  */
+@DatabaseTable(tableName = "ficha")
 public class Ficha {
 
     /**
-     * Numero de ficha
+     * The id
      */
-    private final Long numero;
+    @DatabaseField(generatedId = true)
+    private Long id;
+
+    /**
+     * Numero de ficha //
+     */
+    @DatabaseField(unique = true)
+    private Long numero;
 
     /**
      * Nombre del paciente
      */
-    private final String nombrePaciente;
+    @DatabaseField(canBeNull = false)
+    private String nombrePaciente;
 
     /**
      * Especie del animal, ej: canino
      */
-    private final String especie;
+    @DatabaseField(canBeNull = false)
+    private String especie;
 
     /**
      * Raza del animal, ej: rottweiler
      */
-    private final String raza;
+    @DatabaseField(canBeNull = false)
+    private String raza;
 
     /**
      * Fecha de nacimiento
      */
-    private final ZonedDateTime fechaNacimiento;
+    @DatabaseField(persisterClass = ZonedDateTimeType.class)
+    private ZonedDateTime fechaNacimiento;
 
     /**
      * Sexo del animal
      */
-    private final Sexo sexo;
+    @DatabaseField(canBeNull = false)
+    private Sexo sexo;
 
     /**
      * Color: rojo cobrizo
      */
-    private final String color;
+    @DatabaseField(canBeNull = false)
+    private String color;
 
     /**
      * Tipo: interno/externo
      */
-    private final Tipo tipo;
+    @DatabaseField(canBeNull = false)
+    private Tipo tipo;
+
+    /**
+     * The duenio
+     */
+    @DatabaseField(foreign = true, canBeNull = false, foreignAutoRefresh = true)
+    private Persona duenio;
+
+    /**
+     * The empty constructor
+     */
+    Ficha () {
+        // Nothing here...
+    }
 
     /**
      * The constructor
      *
-     * @param numero to use
-     * @param nombrePaciente to use
-     * @param especie to use
-     * @param raza to use
-     * @param fechaNacimiento to use
-     * @param sexo to use
-     * @param color to use
-     * @param tipo to use
+     * @param numero            of the ficha
+     * @param nombrePaciente    of the paciente
+     * @param especie           of the pet
+     * @param raza              of the pet
+     * @param fechaNacimiento   of the pet
+     * @param sexo              of the pet
+     * @param color             of the pet
+     * @param tipo              of paciente
+     * @param duenio            of the pet
      */
-    public Ficha(Long numero, String nombrePaciente, String especie, String raza, ZonedDateTime fechaNacimiento, Sexo sexo, String color, Tipo tipo) {
+    public Ficha(Long numero, String nombrePaciente, String especie, String raza, ZonedDateTime fechaNacimiento, Sexo sexo, String color, Tipo tipo, Persona duenio) {
         // TODO: Agregar validaciones
         this.numero = numero;
         this.nombrePaciente = nombrePaciente;
@@ -95,6 +128,14 @@ public class Ficha {
         this.sexo = sexo;
         this.color = color;
         this.tipo = tipo;
+        this.duenio = duenio;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
     }
 
     /**
@@ -151,6 +192,13 @@ public class Ficha {
      */
     public Tipo getTipo() {
         return tipo;
+    }
+
+    /**
+     * @return the duenio
+     */
+    public Persona getDuenio() {
+        return duenio;
     }
 
 }
