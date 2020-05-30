@@ -116,13 +116,7 @@ public final class ZonedDateTimeType extends BaseDataType {
     }
 
     /**
-     * Return the SQL argument object extracted from the results associated with column in position columnPos. For
-     * example, if the type is a date-long then this will return a long value or null.
-     *
-     * @param fieldType
-     * @param results
-     * @param columnPos
-     * @throws SQLException If there is a problem accessing the results data.
+     * @see BaseDataType#resultToSqlArg(FieldType, DatabaseResults, int)
      */
     @Override
     public Object resultToSqlArg(FieldType fieldType, DatabaseResults results, int columnPos) throws SQLException {
