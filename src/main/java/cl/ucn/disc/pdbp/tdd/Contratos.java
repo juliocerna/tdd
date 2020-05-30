@@ -34,21 +34,28 @@ import java.util.List;
  *
  * @author Julio Cerna Medina
  */
+@SuppressWarnings("InterfaceNeverImplemented")
 public interface Contratos {
 
     /**
+     * Contrato: C01-Registrar los datos de un paciente
+     *
      * @param ficha to save in the backend
      * @return the {@link Ficha} saved
      */
     Ficha registrarPaciente(Ficha ficha);
 
     /**
+     * Contrato: C02-Registrar los datos de una persona
+     *
      * @param persona to save in the backend
      * @return the {@link Persona} saved
      */
     Persona registrarPersona(Persona persona);
 
     /**
+     * Contrato: C03-Buscar ficha
+     *
      * @param query to search
      * @return the {@link List} of {@link Ficha}
      */
