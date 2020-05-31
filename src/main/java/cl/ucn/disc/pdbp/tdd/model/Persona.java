@@ -57,28 +57,32 @@ public class Persona {
     /**
      * The rut
      */
-    @DatabaseField(canBeNull = false, index = true)
+    @DatabaseField(canBeNull = false, unique = true, index = true)
     private String rut;
 
      /**
      * The direccion
      */
-    //private String direccion;
+     @DatabaseField
+    private String direccion;
 
     /**
      * The telefono fijo
      */
-    //private Integer telefonoFijo;
+    @DatabaseField
+    private Long telefonoFijo;
 
     /**
      * The telefono movil
      */
-    //private Long telefonoMovil;
+    @DatabaseField
+    private Long telefonoMovil;
 
     /**
      * The email
      */
-    //private String email;
+    @DatabaseField(canBeNull = false, unique = true)
+    private String email;
 
     /**
      * Empty constructor
@@ -100,7 +104,7 @@ public class Persona {
      * @param apellido to use
      * @param rut valid
      */
-    public Persona(String nombre, String apellido, String rut) {
+    public Persona(String nombre, String apellido, String rut, String direccion, Long telefonoFijo, Long telefonoMovil, String email) {
 
         // Check null fields
         if (nombre == null || apellido == null || rut == null) {
@@ -125,7 +129,7 @@ public class Persona {
         }
         this.rut = rut;
 
-        /**this.direccion = direccion;
+        this.direccion = direccion;
 
         // Numero fijo should be valid
         // TODO: Verificar el largo del numero fijo
@@ -144,7 +148,7 @@ public class Persona {
         if (!Validation.isEmailValid(email)) {
             throw new RuntimeException("Email should be valid");
         }
-        this.email = email;*/
+        this.email = email;
 
     }
 
@@ -179,30 +183,30 @@ public class Persona {
     /**
      * @return the direccion
      */
-    /**public String getDireccion() {
+    public String getDireccion() {
         return direccion;
-    }*/
+    }
 
     /**
      * @return the telefono fijo
      */
-    /**public Integer getTelefonoFijo() {
+    public Long getTelefonoFijo() {
         return telefonoFijo;
-    }*/
+    }
 
     /**
      * @return the telefono movil
      */
-    /**public Long getTelefonoMovil() {
+    public Long getTelefonoMovil() {
         return telefonoMovil;
-    }*/
+    }
 
     /**
      * @return the email
      */
-    /**public String getEmail() {
+    public String getEmail() {
         return email;
-    }*/
+    }
 
     /**
      * @return the nombre plus apellido.
