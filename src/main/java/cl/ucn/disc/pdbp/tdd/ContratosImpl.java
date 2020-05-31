@@ -114,7 +114,9 @@ public class ContratosImpl implements Contratos {
      */
     @Override
     public Ficha registrarPaciente(Ficha ficha) {
-       throw new NotImplementedException();
+        // TODO: Validaciones faltan
+        this.repoFicha.create(ficha);
+        return ficha;
     }
 
     /**
@@ -124,8 +126,10 @@ public class ContratosImpl implements Contratos {
      * @return the {@link Persona} saved
      */
     @Override
-    public Persona registrarPersona(Persona persona) {
-        throw new NotImplementedException();
+    public Persona registrarPersona(Persona persona){
+        // TODO: Validaciones faltan
+        this.repoPersona.create(persona);
+        return persona;
     }
 
     /**
@@ -196,5 +200,22 @@ public class ContratosImpl implements Contratos {
 
         return fichas;
     }
+
+    /**
+     * @return the {@link List} of all {@link Ficha}
+     */
+    @Override
+    public List<Ficha> getAllFichas() {
+        return this.repoFicha.findAll();
+    }
+
+    /**
+     * @return @return the {@link List} of all {@link Persona}
+     */
+    @Override
+    public List<Persona> getAllPersonas() {
+        return this.repoPersona.findAll();
+    }
+
 
 }

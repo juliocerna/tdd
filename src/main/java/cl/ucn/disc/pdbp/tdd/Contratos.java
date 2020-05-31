@@ -61,4 +61,14 @@ public interface Contratos {
      */
     List<Ficha> buscarFicha(String query);
 
+    /**
+     * @return the {@link List} of all {@link Ficha}
+     */
+    List<Ficha> getAllFichas();
+
+    /**
+     * @return @return the {@link List} of all {@link Persona}
+     */
+    List<Persona> getAllPersonas();
+
 }
