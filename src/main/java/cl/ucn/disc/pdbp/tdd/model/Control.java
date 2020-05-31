@@ -36,7 +36,6 @@ import java.time.ZonedDateTime;
  *
  * @author Julio Cerna Medina
  */
-@DatabaseTable(tableName = "control")
 public class Control {
 
     /**
@@ -95,8 +94,14 @@ public class Control {
      *
      * Nota: Vet can perform many checks
      */
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(foreign = true, canBeNull = false, foreignAutoRefresh = true)
     private Persona veterinario;
+
+    /**
+     * The Ficha-Control
+     */
+    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    private Ficha ficha;
 
     /**
      * Empty constructor
@@ -116,7 +121,7 @@ public class Control {
      * @param diagnostico to use
      * @param veterinario to use
      */
-    public Control(ZonedDateTime fecha, ZonedDateTime fechaProximoControl, float temperatura, float peso, float altura, String diagnostico, Persona veterinario) {
+    public Control(ZonedDateTime fecha, ZonedDateTime fechaProximoControl, float temperatura, float peso, float altura, String diagnostico, Persona veterinario, Ficha ficha) {
         // TODO: Agregar validaciones
         this.fecha = fecha;
         this.fechaProximoControl = fechaProximoControl;
@@ -125,6 +130,14 @@ public class Control {
         this.altura = altura;
         this.diagnostico = diagnostico;
         this.veterinario = veterinario;
+        this.ficha = ficha;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
     }
 
     /**
@@ -176,4 +189,10 @@ public class Control {
         return veterinario;
     }
 
+    /**
+     * @return the ficha
+     */
+    public Ficha getFicha() {
+        return ficha;
+    }
 }

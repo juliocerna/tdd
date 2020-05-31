@@ -25,16 +25,22 @@
 package cl.ucn.disc.pdbp.tdd.model;
 
 import cl.ucn.disc.pdbp.tdd.dao.ZonedDateTimeType;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Ficha Veterinaria
  *
  * @author Julio Cerna Medina
  */
+@SuppressWarnings("ClassWithTooManyFields")
 @DatabaseTable(tableName = "ficha")
 public class Ficha {
 
@@ -65,7 +71,7 @@ public class Ficha {
     /**
      * Raza del animal, ej: rottweiler
      */
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String raza;
 
     /**
@@ -83,7 +89,7 @@ public class Ficha {
     /**
      * Color: rojo cobrizo
      */
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String color;
 
     /**
@@ -97,6 +103,12 @@ public class Ficha {
      */
     @DatabaseField(foreign = true, canBeNull = false, foreignAutoRefresh = true)
     private Persona duenio;
+
+    /**
+     * The List of Control
+     */
+    @ForeignCollectionField(eager = true)
+    private ForeignCollection<Control> controles;
 
     /**
      * The empty constructor
@@ -199,6 +211,13 @@ public class Ficha {
      */
     public Persona getDuenio() {
         return duenio;
+    }
+
+    /**
+     * @return the List of Controles
+     */
+    public List<Control> getControles() {
+        return Collections.unmodifiableList(new ArrayList<>(controles));
     }
 
 }
